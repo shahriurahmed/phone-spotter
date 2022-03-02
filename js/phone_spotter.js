@@ -32,25 +32,42 @@ const displayPhones = phones => {
     else if (phones.length > 20) {
         const div1 = document.createElement('div');
         div1.classList.add('d-grid', 'gap-2', 'd-md-flex', 'justify-content-md-end');
-        div1.innerHTML = `<button id="smore" class="btn btn-warning me-md-2 text-white" type="button">Button</button>`;
+        div1.innerHTML = `<button id="smore" class="btn btn-warning me-md-2 text-white" type="button">Show More</button>`;
         showmore.appendChild(div1);
         for (var i = 0; i < 20; i++) {
-            console.log(phones[i]);
-
             const div = document.createElement('div');
             div.classList.add('col',);
-            div.innerHTML = `<div class="card h-100 shadow p-3 mb-5 bg-body rounded">
+            div.innerHTML = `<div class="card h-100 shadow p-3  bg-body rounded">
             <img src="${phones[i].image}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                     additional content. This content is a little bit longer.</p>
-            </div>
-        </div>`;
+                <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
+                <p class="card-text ">${phones[i].brand}</p>
+
+                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+            </div >
+        </div > `;
             searchResult.appendChild(div);
         }
         document.getElementById('smore').addEventListener('click', function () {
-            console.log('Button is ok');
+            for (var i = 20; i < phones.length; i++) {
+
+                const div = document.createElement('div');
+                div.classList.add('col',);
+                div.innerHTML = `<div class="card h-100 shadow p-3  bg-body rounded">
+            <img src="${phones[i].image}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
+                <p class="card-text ">${phones[i].brand}</p>
+
+                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+            </div >
+        </div > `;
+                searchResult.appendChild(div);
+
+
+                div1.innerHTML = ``;
+                showmore.appendChild(div1);
+            }
         })
 
 
@@ -61,15 +78,16 @@ const displayPhones = phones => {
             console.log(phones[i]);
 
             const div = document.createElement('div');
-            div.classList.add('col');
-            div.innerHTML = `<div class="card h-100 shadow p-3 mb-5 bg-body rounded">
+            div.classList.add('col',);
+            div.innerHTML = `<div class="card h-100 shadow p-3  bg-body rounded">
             <img src="${phones[i].image}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                     additional content. This content is a little bit longer.</p>
-            </div>
-        </div>`;
+                <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
+                <p class="card-text ">${phones[i].brand}</p>
+
+                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+            </div >
+        </div > `;
             searchResult.appendChild(div);
         }
     }
