@@ -43,7 +43,7 @@ const displayPhones = phones => {
                 <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
                 <p class="card-text ">${phones[i].brand}</p>
 
-                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+                <button onclick="loadDetailsByName('${phones[i].slug}')" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
             </div >
         </div > `;
             searchResult.appendChild(div);
@@ -59,7 +59,7 @@ const displayPhones = phones => {
                 <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
                 <p class="card-text ">${phones[i].brand}</p>
 
-                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+                <button onclick="loadDetailsByName('${phones[i].slug}')" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
             </div >
         </div > `;
                 searchResult.appendChild(div);
@@ -85,16 +85,19 @@ const displayPhones = phones => {
                 <h5 class="card-title fw-bold ">${phones[i].phone_name}</h5>
                 <p class="card-text ">${phones[i].brand}</p>
 
-                <button id="details" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
+                <button onclick="loadDetailsByName('${phones[i].slug}')" class="btn btn-warning me-md-2 text-white" type="button">View Details</button>
             </div >
         </div > `;
             searchResult.appendChild(div);
         }
     }
 
-
-
-
-
 }
 
+const loadDetailsByName = name => {
+    const url = `https://openapi.programming-hero.com/api/phone/${name}`;
+    console.log(name);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => console.log(data.data.mainFeatures.storage));
+}
