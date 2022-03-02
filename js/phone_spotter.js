@@ -4,10 +4,13 @@ const searchPhone = () => {
     const searchtarget = searchField.value;
     searchField.value = '';
     const searchResult = document.getElementById('searchresult');
+    searchResult.innerHTML = '';
     const serror = document.getElementById('error');
     serror.innerHTML = '';
     const showbtn = document.getElementById('showmorebtn');
     showbtn.innerHTML = '';
+    const itemDiv = document.getElementById('item_details');
+    itemDiv.innerHTML = ``;
 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchtarget}`;
 
@@ -75,8 +78,6 @@ const displayPhones = phones => {
     }
     else if (phones.length < 20) {
         for (var i = 0; i < phones.length; i++) {
-            console.log(phones[i]);
-
             const div = document.createElement('div');
             div.classList.add('col',);
             div.innerHTML = `<div class="card h-100 shadow p-3  bg-body rounded">
@@ -99,5 +100,37 @@ const loadDetailsByName = name => {
     console.log(name);
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data.data.mainFeatures.storage));
+        .then(data => displayinfo(data.data));
+
 }
+
+const displayinfo = info => {
+    const itemDiv = document.getElementById('item_details');
+    itemDiv.innerHTML = `
+    <div class="card mx-auto pt-3 shadow p-3  bg-body rounded" style="width: 35rem;">
+    <h2 class="text-center fw-bold py-3">Product Details</h2>
+  <img src="${info.image}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h4 class="card-title fw-bold">${info.name}</h4>
+    <p class="card-text fw-bold">${info.brand}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Release Dtae: ${info.releaseDate}</li>
+    <li class="list-group-item">Storage: ${info.mainFeatures.storage}</li>
+    <li class="list-group-item">Display Size: ${info.mainFeatures.displaySize}</li>
+    <li class="list-group-item">ChipSet: ${info.mainFeatures.chipSet}</li>
+    <li class="list-group-item">Memory: ${info.mainFeatures.memory}</li>
+    <li class="list-group-item">Sensors: ${info.mainFeatures.sensors}</li>
+    <li class="list-group-item">WLAN: ${info.others.WLAN}</li>
+    <li class="list-group-item">Bluetooth: ${info.others.Bluetooth}</li>
+    <li class="list-group-item">GPS: ${info.others.GPS}</li>
+    <li class="list-group-item">NFC: ${info.others.NFC}</li>
+    <li class="list-group-item">Radio: ${info.others.Radio}</li>
+    <li class="list-group-item">USB: ${info.others.USB}</li>
+  </ul>
+  
+</div>`
+        ;
+
+}
+
