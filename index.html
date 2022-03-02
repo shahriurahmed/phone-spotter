@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <!-- header started -->
     <header>
         <h1 class="fw-bold bg-dark text-white p-4 text-center"> <span
                 class="border border-2 border-warning rounded  px-3">
@@ -19,11 +20,14 @@
                 SPOTTER
             </span> </h1>
     </header>
+    <!-- main started -->
     <main>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <!-- search field  -->
+        <div class="input-group mb-3 w-50 mx-auto mt-5 ">
+            <input id="searchbox" type="text" class="form-control border border-2 border-warning"
+                placeholder="Brand Name" aria-label="Recipient's username" aria-describedby="button-search">
+            <button onclick="searchPhone()" class="btn btn-outline-warning bg-warning text-white" type="button"
+                id="button-search">Search</button>
         </div>
 
     </main>
